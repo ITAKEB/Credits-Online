@@ -8,7 +8,7 @@ function CreditForm() {
     const history = useHistory();
     const [state, setState] = useState({
         usuario: '',
-        tipoDocumento: '',
+        tipoDocumento: 'TI',
         numeroDocumento: '',
         valorCredito: '',
         tipoCredito: '',
