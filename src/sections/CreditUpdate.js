@@ -53,7 +53,7 @@ function CreditUpdate ({match}) {
     const handleSubmit = (evt) =>{
       evt.preventDefault()
         var data = null
-
+        var deleteData = ''
         data = sessionStorage.getItem(type)
         var oldData = ''
         var arr = data ? data.split(';') : null
