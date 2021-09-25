@@ -97,7 +97,7 @@ function CreditView({match}) {
 
                     <p> {state.tipoDocumento} : {state.numeroDocumento} </p>
 
-                    <p> Credito tipo: {(parseInt(state.tipoCredito+1))} </p>
+                    <p> Credito tipo: {(parseInt(state.tipoCredito)+1)} </p>
 
                     <p> Valor del credito: {state.valorCredito}</p>
 
