@@ -3,13 +3,14 @@ import CreditCard from './CreditCard';
 function CreditType({type, credits, isDeleted}) {
 
   return (
-    <div>
-        <p className="creditType">{type}</p>     
+    <div >
+      <p className="creditType">{type}</p>   
+      <div className="containerCreditType">
         {credits ? credits.map((json,i) => {
           const credit = JSON.parse(json)
           return (
           <CreditCard 
-          key={i} 
+          key={credit.numeroDocumento} 
           position={i}
           isDeleted={isDeleted}
           creditType={credit.tipoCredito}
@@ -19,7 +20,8 @@ function CreditType({type, credits, isDeleted}) {
           fechaActualizacion={ credit.fechaActualizacion}
           fechaCreacion={credit.fechaCreacion}
           creditValue={credit.valorCredito}/>
-          )}) : null}
+          )}) : <p className="info">No hay creditos</p>   }
+      </div>
   </div>
   );
 }

@@ -1,7 +1,10 @@
 
 import React, { useState, useEffect } from 'react';
 import {getCreditsByType} from '../Services/creditService'
-
+import Popup from '../components/Popup';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import {Link} from 'react-router-dom';
 
 function CreditView({match}) {
     const {type, id} = match.params
@@ -16,6 +19,7 @@ function CreditView({match}) {
         plazo: 0,
         tazaInteres: '',
         tableRows: null,
+        showPopup: false,
     })
 
 
@@ -87,7 +91,13 @@ function CreditView({match}) {
   return (
     <div className="creditView">
         <div className="creditContainer">
+            <div className="comeBackBtn">
+                <Link className="link" to="/">
+                    <FontAwesomeIcon  icon={faArrowLeft} size="2x"/>
+                </Link>
+            </div>
             <div className="card">
+                
                 <div>
                     <img src={urlProfileImage} alt="Perfil"/>
                     <h1 className="creditTitle"> {state.usuario} </h1>  
@@ -99,47 +109,55 @@ function CreditView({match}) {
 
                     <p> Credito tipo: {(parseInt(state.tipoCredito)+1)} </p>
 
-                    <p> Valor del credito: {state.valorCredito}</p>
+                    <p> Valor del credito: ${state.valorCredito}</p>
 
                     <p> Plazo: {state.plazo} meses</p>
 
                     <p> Taza interes: {state.tazaInteres}</p>                    
                 </div>
-                <div className="tableContainer">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>
-                                    Periodo
-                                </th>
-                                <th>
-                                    Intereses
-                                </th>
-                                <th>
-                                    Amortizacion del Capital
-                                </th>
-                                <th>
-                                    Cuota
-                                </th>
-                                <th>
-                                    Capital Pendiente
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>0</td> 
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>{state.valorCredito}</td>
-                            </tr>
-                            { state.tableRows ? rowsView() : null}
-                        </tbody>    
-                    </table>
+                <div className="buttonContainer">
+                    <span onClick={() => setState((prevSt) =>({...prevSt, showPopup:true}))}>
+                        Ver tabla
+                    </span>
                 </div>
             </div>
         </div>
+        <Popup open={state.showPopup} 
+        onClose={() => {setState((prevSt) =>({...prevSt, showPopup:false}))}}>
+            <div className="tableContainer">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                Periodo
+                            </th>
+                            <th>
+                                Intereses
+                            </th>
+                            <th>
+                                Amortizacion del Capital
+                            </th>
+                            <th>
+                                Cuota
+                            </th>
+                            <th>
+                                Capital Pendiente
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0</td> 
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>{state.valorCredito}</td>
+                        </tr>
+                        { state.tableRows ? rowsView() : null}
+                    </tbody>    
+                </table>
+            </div>
+        </Popup>
     </div>
   );
 }

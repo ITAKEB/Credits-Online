@@ -73,7 +73,7 @@ function CreditCard({userInformation, creditValue,position, creditType, isDelete
         </div>   
         <div className="credit">
             <div className="item">
-            <p> {state.creditValue}</p>  
+            <p> ${state.creditValue}</p>  
             </div>
             <div className="item">
             <p> Ultima actualizacion: {state.fechaActualizacion}  </p>  

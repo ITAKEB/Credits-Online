@@ -92,9 +92,9 @@ function CreditUpdate ({match}) {
         <p> Usuario </p>
         <input className="field" onChange={_handleChange('usuario')} value={state.usuario}/>
         <p> Tipo de documento </p>
-        <select className="field" onChange={_handleChange('tipoDocumento')}>
-            <option selected={state.tipoDocumento==="CC"} value="CC">Cedula de Ciudadania</option>
-            <option selected={state.tipoDocumento==="TI"} value="TI">Tarjeta de identidad</option>
+        <select value={state.tipoDocumento} className="field" onChange={_handleChange('tipoDocumento')}>
+            <option  value="CC">Cedula de Ciudadania</option>
+            <option  value="TI">Tarjeta de identidad</option>
         </select>
         <p> Numero de documento </p>
         <input className="field" onChange={_handleChange('numeroDocumento')} value={state.numeroDocumento}/>

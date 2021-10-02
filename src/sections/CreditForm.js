@@ -53,9 +53,9 @@ function CreditForm() {
             <p> Usuario </p>
             <input className="field" onChange={_handleChange('usuario')}/>
             <p> Tipo de documento </p>
-            <select className="field" onChange={_handleChange('tipoDocumento')}>
+            <select defaultValue={'TI'} className="field" onChange={_handleChange('tipoDocumento')}>
                 <option value="CC">Cedula de Ciudadania</option>
-                <option selected value="TI">Tarjeta de identidad</option>
+                <option value="TI">Tarjeta de identidad</option>
             </select>
             <p> Numero de documento </p>
             <input className="field" onChange={_handleChange('numeroDocumento')} />
